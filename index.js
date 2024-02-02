@@ -6,7 +6,6 @@ import authRoutes from "./routes/blog.js"
 const app = express();
 const PORT  = 9000;
 
-connectToMongo();
 
 app.use(cors());
 
@@ -20,6 +19,7 @@ app.get("/",(req,res)=>{
 
 app.use("/api/v1" ,authRoutes)
 
-app.listen(PORT , ()=>{
+app.listen(PORT , async ()=>{
+    await connectToMongo();
     console.log(`Server is running ${PORT}`)
 })
